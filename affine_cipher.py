@@ -26,7 +26,7 @@ def modinv(a, m):
  # affine cipher encrytion function
 def affine_encrypt(text, key):
     '''
-    C = (a*P + b) % 26
+    C = (k*P + b) % 26
     '''
     return ''.join([chr(((key[0] * (ord(t) - ord('A')) + key[1]) % 26)
                         + ord('A')) for t in text.upper().replace(' ', '')])
@@ -35,7 +35,7 @@ def affine_encrypt(text, key):
 # affine cipher decryption function
 def affine_decrypt(cipher, key):
     '''
-    P = (a^-1 * (C - b)) % 26
+    P = (k^-1 * (C - b)) % 26
     '''
     return ''.join([chr(((modinv(key[0], 26) * (ord(c) - ord('A') - key[1]))
                          % 26) + ord('A')) for c in cipher])
